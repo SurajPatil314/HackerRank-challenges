@@ -1,3 +1,14 @@
+"""
+https://www.hackerrank.com/contests/hackerrank-women-technologists-codesprint-2019/challenges/sudoku-input/problem
+
+Suduko is a logic-based number-placement puzzle. The objective is to fill a 9×9 grid with digits so that each column, each row, and each of the nine 3×3 subgrids that compose the grid contains all of the digits from 1 to 9.
+
+In this problem, you will be given a set of input data for a partially filled sudoku puzzle. Your task is to determine if it is a valid input. Print "OK" if input is valid. Otherwise print "WRONG INPUT".
+
+Note that an input is valid if no rows, columns, or subgrids contain duplicates.
+"""
+
+
 #!/bin/python3
 
 import math
@@ -47,7 +58,7 @@ def validate(data):
     ro = []
     sig = 0
 
-    for i in matrix:
+    for i in rez:
         ro = []
         for j in i:
             if j != 0 and j in ro:
@@ -59,7 +70,123 @@ def validate(data):
     if sig == 1:
         return "WRONG INPUT"
 
-    return ans
+    # check for sub grid duplicates
+
+    i1 = 0
+    i2 = 0
+
+    q = 0
+    w1 = []
+    w2 = []
+    w3 = []
+    w4 = []
+    w5 = []
+    w6 = []
+    w7 = []
+    w8 = []
+    w9 = []
+    for i in range(0, 9, 1):
+        for j in range(0, 9, 1):
+            if i < 3 and j < 3:
+                if matrix[i][j] != 0 and matrix[i][j] not in w1:
+                    w1.append(matrix[i][j])
+                elif matrix[i][j] == 0:
+                    i1 = 0
+                else:
+                    q = 1
+                    break
+            # ^^^
+            if i < 3 and (j > 2 and j < 6):
+                if matrix[i][j] != 0 and matrix[i][j] not in w2:
+                    w2.append(matrix[i][j])
+                elif matrix[i][j] == 0:
+                    i1 = 0
+                else:
+                    q = 1
+                    print('break at 2')
+                    break
+            # ^^^
+            if i < 3 and (j > 5 and j < 9):
+                if matrix[i][j] != 0 and matrix[i][j] not in w3:
+                    w3.append(matrix[i][j])
+                elif matrix[i][j] == 0:
+                    i1 = 0
+                else:
+                    q = 1
+                    print('break at 3')
+                    break
+            # ^^^
+            if (i > 2 and i < 6) and j < 2:
+                if matrix[i][j] != 0 and matrix[i][j] not in w4:
+                    w4.append(matrix[i][j])
+                elif matrix[i][j] == 0:
+                    i1 = 0
+                else:
+                    q = 1
+                    print('break at 4')
+                    break
+            # ^^^
+            if (i > 2 and i < 6) and (j > 2 and j < 6):
+                if matrix[i][j] != 0 and matrix[i][j] not in w5:
+                    w5.append(matrix[i][j])
+                elif matrix[i][j] == 0:
+                    i1 = 0
+                else:
+                    q = 1
+                    print('break at 5')
+                    break
+            # ^^^
+            if (i > 2 and i < 6) and (j > 5 and j < 9):
+                if matrix[i][j] != 0 and matrix[i][j] not in w6:
+                    w6.append(matrix[i][j])
+                elif matrix[i][j] == 0:
+                    i1 = 0
+                else:
+                    q = 1
+                    print("i1 is %s" + str(i))
+                    print("j1 is %s" + str(j))
+                    print('break at 6')
+                    break
+            # ^^^
+            if (i > 5 and i < 9) and j < 2:
+                if matrix[i][j] != 0 and matrix[i][j] not in w7:
+                    w7.append(matrix[i][j])
+                elif matrix[i][j] == 0:
+                    i1 = 0
+                else:
+                    q = 1
+                    print('break at 7')
+                    break
+            # ^^^
+            if (i > 5 and i < 9) and (j > 2 and j < 6):
+                if matrix[i][j] != 0 and matrix[i][j] not in w8:
+                    w8.append(matrix[i][j])
+                elif matrix[i][j] == 0:
+                    i1 = 0
+                else:
+                    q = 1
+                    print('break at 8')
+                    break
+            # ^^^
+            if (i > 5 and i < 9) and (j > 5 and j < 9):
+                if matrix[i][j] != 0 and matrix[i][j] not in w9:
+                    w9.append(matrix[i][j])
+                elif matrix[i][j] == 0:
+                    i1 = 0
+                else:
+                    q = 1
+                    print('break at 9')
+                    break
+
+        if q == 1:
+            break
+
+    print(w1)
+
+    if q == 1:
+        return "WRONG INPUT"
+    else:
+        return "OK"
 
 
 if __name__ == '__main__':
