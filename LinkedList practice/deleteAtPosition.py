@@ -1,11 +1,4 @@
-"""
-Given pointers to the head nodes of  linked lists that merge together at some point, find the Node where the two lists
- merge. It is guaranteed that the two head Nodes will be different, and neither will be NULL.
-
-In the diagram below, the two lists converge at Node x:
-"""
-
-# !/bin/python3
+#!/bin/python3
 
 import math
 import os
@@ -46,7 +39,7 @@ def print_singly_linked_list(node, sep, fptr):
             fptr.write(sep)
 
 
-# Complete the findMergeNode function below.
+# Complete the deleteNode function below.
 
 #
 # For your reference:
@@ -56,19 +49,28 @@ def print_singly_linked_list(node, sep, fptr):
 #     SinglyLinkedListNode next
 #
 #
+def deleteNode(head, position):
+    if head == None:
+        return head
 
-    class Solution:
-        def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+    temp = head
+    temp1 = head
+    temp2 = head.next
+    i = 0
+    if position == 0:
+        return temp2
 
-            d = {}
-            while headA:
-                d[headA] = 1
-                headA = headA.next
+    while (i < position - 1):
+        temp = temp.next
+        i += 1
 
-            while headB:
-                if headB in d:
-                    return headB
-                headB = headB.next
+    if temp.next != None:
+        temp2 = temp.next.next
+        temp.next = temp2
+    else:
+        temp.next = None
+
+    return head
 
 
 if __name__ == '__main__':
